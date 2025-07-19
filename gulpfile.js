@@ -56,8 +56,7 @@ var paths = {
 
 };
 
-/* I recently just realized that I haven't been using any of these delete tasks and I think It's because since the files have the same name they just get overwritten and it works fine without using them, but in case I run into any problems I will start using them */
-/* deletes any .min.js files in dist/js */
+
 gulp.task('delete:minjs', function (cb) {
   rimraf(paths.minjs_file_path, cb);
 });
@@ -89,12 +88,6 @@ gulp.task("minify:css", function () {
 });
 
 
-/*  
- * so far we have uglify() for minifying js, cssmin() for minifying css and htmlmin() for minifying html
- * #Sweet, #Winning, I know gulp know! Yay can't wait to tell my friends that don't know how to use a computer
- * Anyways, unlike css and js, we are minifying html files one to one from non minified to miniied instead of minifying n number of css or js files into one file
- * We have to do it this way because of the way we load in html files opposed to css and js, I'm also excited to see the speed difference in loading the page
- */
 gulp.task("minify:index_production_html", function() {
 	return gulp.src([paths.index_production_html], {base: '.', read: true})
 	    .pipe(concat("index.min.html"))
@@ -143,14 +136,7 @@ gulp.task("watch:js", ["minify:js"], function(done) {
 	done();
 });
 
-/* 
- * so now that we have the css and js browser reloading after compression we can start defining tasks for our html
- * we could program the task so that when one change is made to one html file, we compress all of them and then 
- * reload the browser, but honestly even though that is much less code, it is stupid and extremely inefficent for development
- * we only have to do that with css and js files because all the files get compressed into one, which is still efficient
- * so what were going to do is create a watch task for each html file, that way its much more efficient
- * files just for reference ["minify:index_html", "minify:create_event_html", "minify:events_html", "minify:login_html", "minify:signup_html"]
-*/
+
 gulp.task("watch:index_html", ["minify:index_html"], function(done) {
 	reload();
 	done();
