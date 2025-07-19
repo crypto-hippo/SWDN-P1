@@ -50,12 +50,3 @@ class PasswordMatchRequest(messages.Message):
 class PasswordMatchResponse(messages.Message):
     match = messages.StringField(1, required=True)
     
-    
-"""
-34:40
-In case I wanted to send requests manualy opposed to using gapi.client.apiname.methodname
-I could just use the path 
-"http://localhost:8080/_ah/api/endpoint_name/v1/path
-obviously replacing localhost with whatever the correct url is
-
-"""
