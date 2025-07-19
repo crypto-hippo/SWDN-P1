@@ -1,4 +1,3 @@
-# User database, I like ndb.Expando because you can dynamically add columns
 from google.appengine.ext import ndb
 import logging
 
